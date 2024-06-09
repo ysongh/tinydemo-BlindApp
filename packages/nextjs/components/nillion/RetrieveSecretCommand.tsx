@@ -1,4 +1,5 @@
 import { CopyString } from "~~/components/nillion/CopyString";
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import { retrieveSecretCommand } from "~~/utils/nillion/retrieveSecretCommand";
 
 const RetrieveSecretCommand: React.FC<{
@@ -6,7 +7,19 @@ const RetrieveSecretCommand: React.FC<{
   storeId: string | null;
   secretName: string;
   secretType: string;
-}> = ({ userKey, storeId, secretName, secretType }) => {
+  programId: string | null;
+}> = ({ userKey, storeId, secretName, secretType, programId }) => {
+
+  const { writeAsync: creatData} = useScaffoldContractWrite({
+    contractName: "Tinydemo",
+    functionName: "creatData",
+    args: [programId, storeId],
+    blockConfirmations: 1,
+    onBlockConfirmation: txnReceipt => {
+      console.log("Transaction blockHash", txnReceipt.blockHash);
+    },
+  });
+
   return (
     !process.env.NEXT_PUBLIC_USE_NILLION_CONFIG && (
       <span>
@@ -17,6 +30,11 @@ const RetrieveSecretCommand: React.FC<{
           {secretName} using the nillion SDK tool
         </p>
         <CopyString str={retrieveSecretCommand(userKey, storeId, secretName)} start={30} end={30} code />
+        <button
+          className={`mt-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 }`}
+          onClick={() => creatData()}>
+          Confirm and Save On-Chain
+        </button>
       </span>
     )
   );

@@ -227,6 +227,7 @@ const Home: NextPage = () => {
                               userKey={userKey}
                               storeId={storedSecretsNameToStoreId[key]}
                               secretName={key}
+                              programId={programId}
                             />
                             <button
                               className="btn btn-sm btn-primary mt-4"
