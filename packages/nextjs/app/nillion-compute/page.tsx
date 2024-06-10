@@ -58,6 +58,15 @@ const Home: NextPage = () => {
     }
   }
 
+  async function retrieveByteFromHTTPBin() {
+    const response = await fetch("https://httpbin.org/bytes/1");
+    const buf = await response.arrayBuffer();
+    const arr = new Uint8Array(buf);
+    const target = arr[0];
+    console.log(target);
+    //return target;
+  }
+
   // reset nillion values
   const resetNillion = () => {
     setConnectedToSnap(false);
@@ -216,6 +225,13 @@ const Home: NextPage = () => {
                   <h1 className="text-xl">
                     Step 2: Store secret integers with program bindings to the {programName} program
                   </h1>
+
+                  <button
+                    className="btn btn-sm btn-primary mt-4"
+                    onClick={retrieveByteFromHTTPBin}
+                  >
+                    Retrieve Byte From HTTPBin
+                  </button>
 
                   <div className="flex flex-row w-full justify-between items-center my-10 mx-10">
                     {Object.keys(storedSecretsNameToStoreId).map(key => (
