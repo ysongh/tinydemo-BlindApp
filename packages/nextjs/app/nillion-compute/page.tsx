@@ -34,7 +34,7 @@ const Home: NextPage = () => {
 
   const [storedSecretsNameToStoreId, setStoredSecretsNameToStoreId] = useState<StringObject>({
     my_int1: null,
-    my_int2: null,
+    guess: null,
   });
   const [parties] = useState<string[]>(["Party1"]);
   const [outputs] = useState<string[]>(["my_output"]);
