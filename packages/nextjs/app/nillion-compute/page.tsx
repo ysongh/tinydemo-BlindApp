@@ -33,7 +33,7 @@ const Home: NextPage = () => {
   const [computeResult, setComputeResult] = useState<string | null>(null);
 
   const [storedSecretsNameToStoreId, setStoredSecretsNameToStoreId] = useState<StringObject>({
-    my_int1: null,
+    api_num: null,
     guess: null,
   });
   const [parties] = useState<string[]>(["Party1"]);
