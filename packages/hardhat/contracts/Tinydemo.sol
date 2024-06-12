@@ -15,6 +15,10 @@ contract Tinydemo {
     return list;
   }
 
+   function getDataById(uint _id) public view returns (Data memory){
+    return list[_id];
+  }
+
   function creatData(string memory _programId, string memory _storeId) public {
     list.push(Data(_programId, _storeId));
   }

@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     Tinydemo: {
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
       abi: [
         {
           inputs: [],
@@ -30,6 +30,37 @@ const deployedContracts = {
           name: "creatData",
           outputs: [],
           stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_id",
+              type: "uint256",
+            },
+          ],
+          name: "getDataById",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "programId",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "storeId",
+                  type: "string",
+                },
+              ],
+              internalType: "struct Tinydemo.Data",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
           type: "function",
         },
         {
