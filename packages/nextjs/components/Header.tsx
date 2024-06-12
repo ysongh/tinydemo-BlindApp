@@ -24,6 +24,10 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/data-list",
   },
   {
+    label: "Create Game",
+    href: "/create-game",
+  },
+  {
     label: "🖥️ Blind Computation",
     href: "/nillion-compute",
   },
