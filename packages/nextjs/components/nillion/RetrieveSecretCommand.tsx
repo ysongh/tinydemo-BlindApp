@@ -8,7 +8,8 @@ const RetrieveSecretCommand: React.FC<{
   secretName: string;
   secretType: string;
   programId: string | null;
-}> = ({ userKey, storeId, secretName, secretType, programId }) => {
+  hide: boolean;
+}> = ({ userKey, storeId, secretName, secretType, programId, hide }) => {
 
   const { writeAsync: creatData} = useScaffoldContractWrite({
     contractName: "Tinydemo",
@@ -30,11 +31,13 @@ const RetrieveSecretCommand: React.FC<{
           {secretName} using the nillion SDK tool
         </p>
         <CopyString str={retrieveSecretCommand(userKey, storeId, secretName)} start={30} end={30} code />
-        <button
-          className={`mt-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 }`}
-          onClick={() => creatData()}>
-          Confirm and Save On-Chain
-        </button>
+        {!hide && (
+          <button
+            className={`mt-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 }`}
+            onClick={() => creatData()}>
+            Confirm and Save On-Chain
+          </button>
+        )}
       </span>
     )
   );

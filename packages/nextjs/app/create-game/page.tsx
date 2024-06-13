@@ -216,6 +216,7 @@ const Home: NextPage = () => {
                               storeId={storedSecretsNameToStoreId[key]}
                               secretName={key}
                               programId={programId}
+                              hide={false}
                             />
                             <button
                               className="btn btn-sm btn-primary mt-4"

@@ -210,6 +210,7 @@ const Home = ({ params }: { params: { id: string } }) => {
                               storeId={storedSecretsNameToStoreId[key]}
                               secretName={key}
                               programId={data.programId}
+                              hide={true}
                             />
                             <button
                               className="btn btn-sm btn-primary mt-4"
