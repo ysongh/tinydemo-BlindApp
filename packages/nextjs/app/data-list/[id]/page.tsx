@@ -31,7 +31,7 @@ const Home = ({ params }: { params: { id: string } }) => {
   const [storedSecretsNameToStoreId, setStoredSecretsNameToStoreId] = useState<StringObject>({
     guess: null,
   });
-  const [parties] = useState<string[]>(["Party1"]);
+  const [parties] = useState<string[]>(["Party2"]);
   const [outputs] = useState<string[]>(["my_output"]);
 
   const { data } = useScaffoldContractRead({
