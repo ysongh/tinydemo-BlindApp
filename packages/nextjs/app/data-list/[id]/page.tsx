@@ -89,6 +89,8 @@ const Home = ({ params }: { params: { id: string } }) => {
     }
   }, [userKey]);
 
+  console.log(computeResult)
+
   // handle form submit to store secrets with bindings
   async function handleSecretFormSubmit(
     secretName: string,
@@ -245,7 +247,7 @@ const Home = ({ params }: { params: { id: string } }) => {
                       Compute on {programName}
                     </button>
                   )}
-                  {computeResult && <p>✅ Compute result: {computeResult}</p>}
+                  {computeResult && <p>{computeResult == "1" ? "Correct" : computeResult == "3" ? "Too High" : "Too Low"}</p>}
                 </div>
               </div>
             )}
