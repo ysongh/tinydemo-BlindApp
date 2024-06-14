@@ -226,6 +226,7 @@ const Home = ({ params }: { params: { id: string } }) => {
                             secretName={key}
                             onSubmit={handleSecretFormSubmit}
                             isDisabled={!data.programId}
+                            hidePermissions={true}
                             secretType="number"
                           />
                         )}
