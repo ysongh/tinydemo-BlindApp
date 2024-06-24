@@ -36,6 +36,7 @@ const Home: NextPage = () => {
                 </button>
               </div>
             ))}
+            {!list.length && <p className="text-red-500 text-xl">No game yet...</p>}
           </div>
         </div>
       </div>
