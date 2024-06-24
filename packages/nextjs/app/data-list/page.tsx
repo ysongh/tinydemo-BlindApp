@@ -16,14 +16,14 @@ const Home: NextPage = () => {
     <>
       <div className="flex items-center flex-col pt-10">
         <div className="px-5 flex flex-col">
-          <h1 className="text-xl">
+          <h1 className="text-xl mb-3">
             <span className="block text-4xl font-bold text-center">
               Data List to guess
             </span>
           </h1>
           <div>
             {list?.map((l, index) => (
-              <div key={index}>
+              <div className="bg-blue-100 hover:bg-blue-300 transition-colors p-3 rounded-xl shadow-lg" key={index}>
                 <p>Store Id: {l.storeId}</p>
                 <p>Program Id: {l.programId}</p>
                 <button
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
                 </button>
               </div>
             ))}
-            {!list.length && <p className="text-red-500 text-xl">No game yet...</p>}
+            {!list?.length && <p className="text-red-500 text-xl">No game yet...</p>}
           </div>
         </div>
       </div>
