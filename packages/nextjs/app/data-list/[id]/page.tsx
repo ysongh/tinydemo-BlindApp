@@ -5,7 +5,7 @@ import { useAccount } from "wagmi";
 import { CopyString } from "~~/components/nillion/CopyString";
 import { NillionOnboarding } from "~~/components/nillion/NillionOnboarding";
 import RetrieveSecretCommand from "~~/components/nillion/RetrieveSecretCommand";
-import SecretForm from "~~/components/nillion/SecretForm";
+import GuessForm from "~~/components/nillion/GuessForm";
 import { Address } from "~~/components/scaffold-eth";
 import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 import { compute } from "~~/utils/nillion/compute";
@@ -204,32 +204,34 @@ const Home = ({ params }: { params: { id: string } }) => {
                   <div className="flex flex-row w-full justify-between items-center my-10 mx-10">
                     {Object.keys(storedSecretsNameToStoreId).map(key => (
                       <div className="flex-1 px-2" key={key}>
-                        {!!storedSecretsNameToStoreId[key] && userKey ? (
-                          <>
-                            <RetrieveSecretCommand
-                              secretType="SecretInteger"
-                              userKey={userKey}
-                              storeId={storedSecretsNameToStoreId[key]}
-                              secretName={key}
-                              programId={data.programId}
-                              hide={true}
-                            />
-                            <button
-                              className="btn btn-sm btn-primary mt-4"
-                              onClick={() => handleRetrieveInt(key, storedSecretsNameToStoreId[key])}
-                            >
-                              👀 Retrieve SecretInteger
-                            </button>
-                          </>
-                        ) : (
-                          <SecretForm
+                        <>
+                          {!!storedSecretsNameToStoreId[key] && userKey && (
+                            <>
+                             <RetrieveSecretCommand
+                                secretType="SecretInteger"
+                                userKey={userKey}
+                                storeId={storedSecretsNameToStoreId[key]}
+                                secretName={key}
+                                programId={data.programId}
+                                hide={true}
+                              />
+                              <button
+                                className="btn btn-sm btn-primary mt-4"
+                                onClick={() => handleRetrieveInt(key, storedSecretsNameToStoreId[key])}
+                              >
+                                👀 Retrieve SecretInteger
+                              </button>
+                            </>
+                          )}
+                          <div className="mb-3"></div>
+                          <GuessForm
                             secretName={key}
                             onSubmit={handleSecretFormSubmit}
                             isDisabled={!data.programId}
                             hidePermissions={true}
                             secretType="number"
                           />
-                        )}
+                        </>
                       </div>
                     ))}
                   </div>
@@ -239,15 +241,13 @@ const Home = ({ params }: { params: { id: string } }) => {
                   <h1 className="text-xl">
                     Perform blind computation with stored secrets in the {programName} program
                   </h1>
-                  {!computeResult && (
-                    <button
+                  <button
                       className="btn btn-sm btn-primary mt-4"
                       onClick={handleCompute}
                       disabled={Object.values(storedSecretsNameToStoreId).every(v => !v)}
                     >
                       Compute on {programName}
                     </button>
-                  )}
                   {computeResult && <p>{computeResult == "1" ? "Correct" : computeResult == "3" ? "Too High" : "Too Low"}</p>}
                 </div>
               </div>
