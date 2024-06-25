@@ -20,11 +20,11 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/",
   },
   {
-    label: "Data List",
+    label: "📝 Data List",
     href: "/data-list",
   },
   {
-    label: "Create Game",
+    label: "🎮 Create Game",
     href: "/create-game",
   },
   {
